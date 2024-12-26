@@ -41,3 +41,9 @@ To start the application with the frontend, backend, and MongoDB containers runn
 docker run -p 3000:3000 -p 5000:5000 rohit273/learn-ed-app:latest
 ```
 
+
+## Alternative Methos
+
+### Pull the github repo
+### Install and Setup docker-compose in your system 
+### Run ``` docker compose up --build```
