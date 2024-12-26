@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/userdb", {
+mongoose.connect("mongodb://mongo:27017/userdb", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => console.log("MongoDB connected"))
@@ -81,4 +81,4 @@ app.post("/api/login", async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
