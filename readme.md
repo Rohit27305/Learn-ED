@@ -24,6 +24,24 @@ The application is containerized using **Docker** to simplify the deployment pro
 
 ## Steps to Run the App:
 
+# 1 Github
+
 ### Pull the github repo
 ### Install and Setup docker-compose in your system 
 ### Run ``` docker compose up --build```
+
+# 2 Dockerhub
+
+### Start mongodb cintainer
+Start the mongo container first ``` docker run -d --name mongodb -p 27017:27017 mongo:latest ```
+
+### Run image
+
+Run the image making sure linking with mongodb 
+```bash
+docker run -d -p 3000:3000 \
+  --link mongodb:mongo \
+  -e MONGO_URI="mongodb://mongo:27017/userdb" \
+  rohit273/learn-ed-app:latest
+```
+
