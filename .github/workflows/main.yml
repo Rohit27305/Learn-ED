@@ -30,13 +30,11 @@ jobs:
           chmod 600 pair.pem
           ssh -i pair.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             docker compose down
-            docker stop \$(docker ps -aq) || true
-            docker rm \$(docker ps -aq) || true
+            docker stop $(docker ps -aq) || true
+            docker rm $(docker ps -aq) || true
             docker rmi rohit273/learn-ed-app:latest || true
-            docker rmi -f \$(docker images -aq) || true
+            docker rmi -f $(docker images -aq) || true
             
             cd Learn-ED
-            docker compose up -d --d pull always
+            docker compose up -d --pull always
           EOF
-      
-      
