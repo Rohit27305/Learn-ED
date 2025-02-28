@@ -29,10 +29,14 @@ jobs:
           echo "${{ secrets.EC2_PRIVATE_KEY }}" > pair.pem
           chmod 600 pair.pem
           ssh -i pair.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            cd Learn-ED
             docker compose down
+            docker stop \$(docker ps -aq) || true
+            docker rm \$(docker ps -aq) || true
             docker rmi rohit273/learn-ed-app:latest || true
-            docker compose up --build -d
+            docker rmi -f \$(docker images -aq) || true
+            
+            cd Learn-ED
+            docker compose up -d --d pull always
           EOF
       
       
